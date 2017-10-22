@@ -1,16 +1,20 @@
 package com.hoangtrongminhduc.html5.dev.sqliteexample;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Detail extends AppCompatActivity {
     private TextView tvName, tvPhone, tvAddress, tvDate, tvTime, tvGender;
     private Contact contact;
+    private ImageView btnCall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class Detail extends AppCompatActivity {
         tvDate = (TextView)findViewById(R.id.tvDate);
         tvTime = (TextView)findViewById(R.id.tvTime);
         tvGender = (TextView)findViewById(R.id.tvGender);
+        btnCall = (ImageView)findViewById(R.id.btnCall);
     }
     //nhan doi tuong duoc chon trong activity main va set text cho layout
     private void addEvent(){
@@ -40,6 +45,12 @@ public class Detail extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         contact =(Contact) bundle.getSerializable("SEND");
         setTextLayout(contact);
+        btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+contact.getNumber())));
+            }
+        });
     }
     //xu li su kien khi chon vao nut action bar
     @Override
