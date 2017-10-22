@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_delete:
                 deleteAll();
+                Toast.makeText(this, "Đã xóa tất cả!!", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
